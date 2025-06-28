@@ -3,7 +3,7 @@ const router = express.Router()
 const busController = require("../controller/busController")
 
 
-router.post("/addBus", busController.addBus)
+router.post("/addBus", busController.addBuses)
 router.get("/available/:seats", busController.getAvailableSeats)
 
 

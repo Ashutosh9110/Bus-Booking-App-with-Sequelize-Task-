@@ -1,12 +1,12 @@
 const { Op } = require("sequelize")
-const busTable = require("../models/busModel")
+const {busModel} = require("../models/busModel")
 
 
 
-const addBus = async (req, res) => {
+const addBuses = async (req, res) => {
   try {
     const { busNumber, seatAvailability, seatCapacity } = req.body
-    const bus = await busTable.create({
+    const bus = await busModel.create({
       busNumber,
       seatAvailability,
       seatCapacity
@@ -24,7 +24,7 @@ const getAvailableSeats = async (req, res) => {
     if (isNaN(seats)) {
       return res.status(400).json({ msg: "Invalid seat number in URL" });
     }
-    const buses = await busTable.findAll({
+    const buses = await busModel.findAll({
       where: {
         seatAvailability: {
           [Op.gt]: seats
@@ -34,7 +34,7 @@ const getAvailableSeats = async (req, res) => {
       res.status(200).json(buses)
   } catch (error) {
       console.error(error);
-      res.status(500).json({ msg:  "Unable to fetch available buses"})
+      res.status(500).json({error: "Unable to fetch buses", details: error.message})
   }
 }
 
@@ -42,6 +42,6 @@ const getAvailableSeats = async (req, res) => {
 
 
 module.exports = {
-  addBus,
+  addBuses,
   getAvailableSeats
 }

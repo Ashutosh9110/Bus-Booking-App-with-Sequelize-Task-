@@ -4,7 +4,7 @@ const sequelize = require("../utils/db-connections")
 
 
 
-const busTable = sequelize.define("busTable", {
+const busModel = sequelize.define("busModel", {
   busNumber: {
     type: DataTypes.STRING,
     allowNull:false
@@ -20,4 +20,4 @@ const busTable = sequelize.define("busTable", {
 })
 
 
-module.exports = busTable
+module.exports = {busModel}

@@ -4,7 +4,7 @@ const sequelize = require("../utils/db-connections")
 
 
 
-const userTable = sequelize.define("userTable", {
+const userModel = sequelize.define("userModel", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -22,4 +22,4 @@ const userTable = sequelize.define("userTable", {
 })
 
 
-module.exports = userTable
+module.exports = {userModel}

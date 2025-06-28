@@ -1,11 +1,11 @@
-const userTable = require("../models/userModel")
+const {userModel} = require("../models/userModel")
 
 
 
 const addUser = async (req, res) => {
   try {
     const { name, email} = req.body
-    const user = await userTable.create({
+    const user = await userModel.create({
       name:name,
       email:email
     })
@@ -17,9 +17,9 @@ const addUser = async (req, res) => {
 }
 
 
-const getAllUsers = async (req, res) => {
+const findAllUser = async (req, res) => {
     try {
-      const users  = await userTable.findAll()
+      const users  = await userModel.findAll()
       res.status(200).json(users)
     } catch (error) {
       res.status(404).json({ msg : "Unable to fetch users"})
@@ -32,5 +32,5 @@ const getAllUsers = async (req, res) => {
 
 module.exports = {
   addUser,
-  getAllUsers
+  findAllUser
 }
